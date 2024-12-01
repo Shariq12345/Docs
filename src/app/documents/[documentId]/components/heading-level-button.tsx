@@ -61,7 +61,7 @@ export const HeadingLevelButton: React.FC = () => {
         <button
           className="
             flex items-center justify-between 
-            w-[180px] h-8 
+            w-[150px] h-8 
             px-3 py-1 
             border border-neutral-300 rounded-md 
             hover:bg-neutral-100 
