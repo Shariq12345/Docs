@@ -1,10 +1,11 @@
+import { LabelTooltip } from "@/components/label-tooltip";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useEditorStore } from "@/store/use-editor-store";
-import { HighlighterIcon } from "lucide-react";
+import { PenLineIcon } from "lucide-react";
 import React from "react";
 import { CirclePicker, type ColorResult } from "react-color";
 
@@ -61,18 +62,25 @@ export const HighlightColorButton = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <button
-          className="
+      <DropdownMenuTrigger>
+        <LabelTooltip
+          content="Highlight Color"
+          side="bottom"
+          align="center"
+          delayDuration={0}
+        >
+          <button
+            className="
               flex flex-col items-center justify-between 
-              min-w-7 h-8 px-2 py-1.5 rounded-md 
+              min-w-7 h-8 px-2 py-2 rounded-md 
               hover:bg-neutral-200/80  
               focus:outline-none
               transition-all duration-200
             "
-        >
-          <HighlighterIcon className="size-4" />
-        </button>
+          >
+            <PenLineIcon className="size-4" />
+          </button>
+        </LabelTooltip>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="p-2.5">
         <CirclePicker

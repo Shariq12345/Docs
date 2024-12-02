@@ -1,3 +1,4 @@
+import { LabelTooltip } from "@/components/label-tooltip";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -95,37 +96,43 @@ export const FontFamilyButton: React.FC = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <button
-          className="
-            flex items-center justify-between 
-            w-[130px] h-8 
-            px-3 py-1 
-            border border-neutral-300 rounded-md 
-            hover:bg-neutral-100 
-            focus:outline-none
-            transition-all duration-200
-          "
+      <DropdownMenuTrigger>
+        <LabelTooltip
+          content="Font"
+          side="bottom"
+          align="center"
+          delayDuration={0}
         >
-          <span
+          <button
             className="
-              text-sm font-medium 
-              truncate flex-grow 
-              text-left
-            "
-            style={{ fontFamily: currentFont }}
+          flex items-center justify-between 
+          w-[120px] h-8 
+          px-3 py-1 rounded-md 
+          hover:bg-neutral-200/80 
+          focus:outline-none
+          transition-all duration-200
+          "
           >
-            {fonts.find((f) => f.value === currentFont)?.label || "Arial"}
-          </span>
-          <ChevronDownIcon
-            className="
-              ml-2 
-              size-4 
-              text-neutral-600 
-              shrink-0
+            <span
+              className="
+            text-sm font-medium 
+            truncate flex-grow 
+            text-left
             "
-          />
-        </button>
+              style={{ fontFamily: currentFont }}
+            >
+              {fonts.find((f) => f.value === currentFont)?.label || "Arial"}
+            </span>
+            <ChevronDownIcon
+              className="
+            ml-2 
+            size-4 
+            text-neutral-600 
+            shrink-0
+            "
+            />
+          </button>
+        </LabelTooltip>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent

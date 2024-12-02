@@ -256,20 +256,30 @@ body {
       outline: 3px solid var(--primary);
     }
   }
+
+  /* Link styles */
+  a {
+    @apply text-blue-600;
+    cursor: pointer;
+
+    &:hover {
+      @apply underline;
+    }
+  }
 }
 
-.ProseMirror-selectednode > div:nth-child(1) > div {
-  display: flex !important; /* Arrange icons in a row */
-  gap: 10px !important; /* Add space between icons */
-  justify-content: center !important; /* Center the icons */
-  align-items: center !important; /* Vertically align icons */
-  padding: 8px 12px !important; /* Add spacing for better touch targets */
-  background-color: #f9f9f9 !important; /* Light gray background */
-  border: 1px solid #e0e0e0 !important; /* Subtle border */
-  border-radius: 8px !important; /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important; /* Soft shadow for depth */
-  transition: all 0.2s ease-in-out !important; /* Smooth hover effects */
-}
+/* .ProseMirror-selectednode > div:nth-child(1) > div {
+  display: flex !important;
+  gap: 10px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 8px 12px !important;
+  background-color: #f9f9f9 !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.2s ease-in-out !important;
+} */
 
 .ProseMirror-selectednode > div:nth-child(1) > div:hover {
   background-color: #ffffff; /* Slightly lighter background on hover */

@@ -20,6 +20,12 @@ import { FontFamilyButton } from "./font-family-button";
 import { HeadingLevelButton } from "./heading-level-button";
 import { TextColorButton } from "./text-color-button";
 import { HighlightColorButton } from "./highlight-color-button";
+import { LinkButton } from "./link-button";
+import { ImageButton } from "./image-button";
+import { AlignButton } from "./align-button";
+import { ListButton } from "./list-button";
+import { FontSizeButton } from "./font-size-button";
+import { LabelTooltip } from "@/components/label-tooltip";
 
 interface ToolbarButtonProps {
   onClick?: () => void;
@@ -124,7 +130,7 @@ export const Toolbar = () => {
     ],
   ];
   return (
-    <div className="bg-[#f1f4f9] px-2.5 py-0.5 rounded-[24px] min-h-[50px] flex items-center gap-x-0.5 overflow-x-auto">
+    <div className="bg-[#f1f4f9] px-2.5 py-0.5 rounded-[24px] min-h-[46px] flex items-center gap-x-0.5 overflow-x-auto">
       {sections[0].map((item) => (
         <ToolbarButton key={item.label} {...item} />
       ))}
@@ -137,21 +143,26 @@ export const Toolbar = () => {
       <HeadingLevelButton />
 
       <Separator className="h-6 bg-neutral-300" orientation="vertical" />
+
+      <FontSizeButton />
+      <Separator className="h-6 bg-neutral-300" orientation="vertical" />
+
       {sections[1].map((item) => (
         <ToolbarButton key={item.label} {...item} />
       ))}
 
-      {/* TODO: Text Color */}
       <TextColorButton />
 
-      {/* TODO: Highlight Color */}
-      <Separator className="h-6 bg-neutral-300" orientation="vertical" />
       <HighlightColorButton />
-      {/* TODO: Link */}
-      {/* TODO: Image */}
-      {/* TODO: Align */}
-      {/* TODO: Line Height */}
-      {/* TODO: List */}
+
+      <Separator className="h-6 bg-neutral-300" orientation="vertical" />
+
+      <LinkButton />
+      <ImageButton />
+      <AlignButton />
+
+      <ListButton />
+
       {sections[2].map((item) => (
         <ToolbarButton key={item.label} {...item} />
       ))}

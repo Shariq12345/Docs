@@ -17,6 +17,9 @@ import FontFamily from "@tiptap/extension-font-family";
 import TextStyle from "@tiptap/extension-text-style";
 import Color from "@tiptap/extension-color";
 import Highlight from "@tiptap/extension-highlight";
+import Link from "@tiptap/extension-link";
+import TextAlign from "@tiptap/extension-text-align";
+import { FontSizeExtension } from "@/extensions/font-size";
 
 export const Editor = () => {
   const { setEditor } = useEditorStore();
@@ -30,10 +33,20 @@ export const Editor = () => {
     },
     extensions: [
       StarterKit,
+      FontSizeExtension,
       Underline,
       FontFamily,
       TextStyle,
       Color,
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
+      Link.configure({
+        openOnClick: true,
+        autolink: true,
+        defaultProtocol: "https",
+        protocols: ["http", "https"],
+      }),
       Highlight.configure({
         multicolor: true,
       }),
@@ -53,7 +66,6 @@ export const Editor = () => {
       TableHeader,
       TableCell,
     ],
-    content: `Hello World! 🌍`,
     onCreate({ editor }) {
       setEditor(editor);
     },

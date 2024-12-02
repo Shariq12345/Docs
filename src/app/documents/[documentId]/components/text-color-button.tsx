@@ -1,3 +1,4 @@
+import { LabelTooltip } from "@/components/label-tooltip";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -60,20 +61,27 @@ export const TextColorButton = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <button
-          className="
-            flex flex-col items-center justify-between 
-            min-w-8 h-8 
-            px-3 py-1.5 rounded-md 
-            hover:bg-neutral-200/80 
-            focus:outline-none
-            transition-all duration-200
-          "
+      <DropdownMenuTrigger>
+        <LabelTooltip
+          content="Text Color"
+          side="bottom"
+          align="center"
+          delayDuration={0}
         >
-          <span className="text-xs">A</span>
-          <div className="h-0.5 w-full" style={{ backgroundColor: value }} />
-        </button>
+          <button
+            className="
+          flex flex-col items-center justify-between 
+          min-w-8 h-8 
+          px-3 py-1.5 rounded-md 
+          hover:bg-neutral-200/80 
+          focus:outline-none
+          transition-all duration-200
+          "
+          >
+            <span className="text-xs">A</span>
+            <div className="h-0.5 w-full" style={{ backgroundColor: value }} />
+          </button>
+        </LabelTooltip>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="p-2.5">
         <CirclePicker

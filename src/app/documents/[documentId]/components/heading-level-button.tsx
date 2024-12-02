@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { useEditorStore } from "@/store/use-editor-store";
 import { ChevronDown } from "lucide-react";
 import { type Level } from "@tiptap/extension-heading";
+import { LabelTooltip } from "@/components/label-tooltip";
 
 // Type definitions for improved type safety
 interface HeadingOption {
@@ -57,36 +58,42 @@ export const HeadingLevelButton: React.FC = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <button
-          className="
+      <DropdownMenuTrigger>
+        <LabelTooltip
+          content="Styles"
+          side="bottom"
+          align="center"
+          delayDuration={0}
+        >
+          <button
+            className="
             flex items-center justify-between 
-            w-[150px] h-8 
-            px-3 py-1 
-            border border-neutral-300 rounded-md 
-            hover:bg-neutral-100 
+            w-[130px] h-8 
+            px-3 py-1  rounded-md 
+            hover:bg-neutral-200/80 
             focus:outline-none
             transition-all duration-200
           "
-        >
-          <span
-            className="
+          >
+            <span
+              className="
               text-sm font-medium 
               truncate flex-grow 
               text-left
             "
-          >
-            {currentHeading()}
-          </span>
-          <ChevronDown
-            className="
+            >
+              {currentHeading()}
+            </span>
+            <ChevronDown
+              className="
               ml-2 
               size-4 
               text-neutral-600 
               shrink-0
             "
-          />
-        </button>
+            />
+          </button>
+        </LabelTooltip>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
