@@ -309,3 +309,32 @@ body {
   scrollbar-width: thin;
   scrollbar-color: theme("colors.neutral.300") theme("colors.neutral.100");
 }
+
+code {
+  background-color: var(--code-background, #f4f4f4);
+  border-radius: 0.5rem;
+  border: 1px solid var(--code-border, #e0e0e0);
+  color: var(--code-text, #333);
+  font-family: 'Cascadia Code', 'Fira Code', 'Source Code Pro', Consolas, monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  padding: 0.4rem 0.6rem;
+  display: inline-block;
+  max-width: 100%;
+  word-wrap: break-word;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s ease;
+}
+
+code:hover {
+  background-color: var(--code-background-hover, #f0f0f0);
+}
+
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}

@@ -59,7 +59,7 @@ export const FontSizeButton = () => {
     <div className="flex items-center gap-x-0.5">
       <LabelTooltip
         content="Decrease font size"
-        side="top"
+        side="bottom"
         align="center"
         delayDuration={0}
       >
@@ -87,7 +87,7 @@ export const FontSizeButton = () => {
       ) : (
         <LabelTooltip
           content="Font size"
-          side="top"
+          side="bottom"
           align="center"
           delayDuration={0}
         >
@@ -105,7 +105,7 @@ export const FontSizeButton = () => {
       )}
       <LabelTooltip
         content="Increase font size"
-        side="top"
+        side="bottom"
         align="center"
         delayDuration={0}
       >

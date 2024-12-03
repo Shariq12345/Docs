@@ -16,44 +16,63 @@ import {
   UnderlineIcon,
   Undo2Icon,
 } from "lucide-react";
-import { FontFamilyButton } from "./font-family-button";
-import { HeadingLevelButton } from "./heading-level-button";
-import { TextColorButton } from "./text-color-button";
-import { HighlightColorButton } from "./highlight-color-button";
-import { LinkButton } from "./link-button";
-import { ImageButton } from "./image-button";
-import { AlignButton } from "./align-button";
-import { ListButton } from "./list-button";
-import { FontSizeButton } from "./font-size-button";
+import { FontFamilyButton } from "./buttons/font-family-button";
+import { HeadingLevelButton } from "./buttons/heading-level-button";
+import { TextColorButton } from "./buttons/text-color-button";
+import { HighlightColorButton } from "./buttons/highlight-color-button";
+import { LinkButton } from "./buttons/link-button";
+import { ImageButton } from "./buttons/image-button";
+import { AlignButton } from "./buttons/align-button";
+import { ListButton } from "./buttons/list-button";
+import { FontSizeButton } from "./buttons/font-size-button";
 import { LabelTooltip } from "@/components/label-tooltip";
+import { LineHeightButton } from "./buttons/line-height-button";
+import { MdFormatBold } from "react-icons/md";
+import { MdFormatItalic } from "react-icons/md";
+import { MdFormatUnderlined } from "react-icons/md";
 
 interface ToolbarButtonProps {
   onClick?: () => void;
   isActive?: boolean;
-  icon: LucideIcon;
+  icon: LucideIcon | React.ComponentType | React.ElementType;
+  label: string;
 }
 
 const ToolbarButton = ({
   icon: Icon,
   isActive,
   onClick,
+  label,
 }: ToolbarButtonProps) => {
   return (
-    <button
-      className={cn(
-        "text-sm h-7 min-w-7 flex items-center justify-center rounded-sm hover:bg-neutral-200/80",
-        isActive && "bg-neutral-200/80"
-      )}
-      onClick={onClick}
+    <LabelTooltip
+      content={label}
+      side="bottom"
+      align="center"
+      delayDuration={0}
     >
-      <Icon className="size-4" />
-    </button>
+      <button
+        className={cn(
+          "group relative text-sm h-8 w-8 flex items-center justify-center rounded-md",
+          "hover:bg-neutral-100 transition-colors duration-200",
+          "focus:ring-2 focus:ring-blue-500/50",
+          isActive && "bg-blue-100 text-blue-600"
+        )}
+        onClick={onClick}
+      >
+        <Icon
+          className="size-4 text-neutral-600 group-hover:text-neutral-900 
+          transition-colors duration-200"
+        />
+        <span className="sr-only">{label}</span>
+      </button>
+    </LabelTooltip>
   );
 };
 
 export const Toolbar = () => {
   const { editor } = useEditorStore();
-  console.log({ editor });
+
   const sections: {
     label: string;
     icon: LucideIcon;
@@ -91,19 +110,19 @@ export const Toolbar = () => {
     [
       {
         label: "Bold",
-        icon: BoldIcon,
+        icon: MdFormatBold,
         onClick: () => editor?.chain().focus().toggleBold().run(),
         isActive: editor?.isActive("bold"),
       },
       {
         label: "Italic",
-        icon: ItalicIcon,
+        icon: MdFormatItalic,
         onClick: () => editor?.chain().focus().toggleItalic().run(),
         isActive: editor?.isActive("italic"),
       },
       {
         label: "Underline",
-        icon: UnderlineIcon,
+        icon: MdFormatUnderlined,
         onClick: () => editor?.chain().focus().toggleUnderline().run(),
         isActive: editor?.isActive("underline"),
       },
@@ -129,43 +148,64 @@ export const Toolbar = () => {
       },
     ],
   ];
+
   return (
-    <div className="bg-[#f1f4f9] px-2.5 py-0.5 rounded-[24px] min-h-[46px] flex items-center gap-x-0.5 overflow-x-auto">
-      {sections[0].map((item) => (
-        <ToolbarButton key={item.label} {...item} />
-      ))}
-      <Separator className="h-6 bg-neutral-300" orientation="vertical" />
+    <div
+      className="bg-white border border-neutral-200 rounded-lg shadow-sm 
+      px-2 py-1 flex items-center gap-x-1 overflow-x-auto 
+      max-w-full w-full scrollbar-thin scrollbar-thumb-neutral-300"
+    >
+      <div className="flex items-center gap-x-1">
+        {sections[0].map((item) => (
+          <ToolbarButton key={item.label} {...item} />
+        ))}
+      </div>
 
-      <FontFamilyButton />
+      <Separator className="h-6 mx-1.5 bg-neutral-300" orientation="vertical" />
 
-      <Separator className="h-6 bg-neutral-300" orientation="vertical" />
+      <div className="flex items-center gap-x-1">
+        <FontFamilyButton />
+        <Separator
+          className="h-6 mx-1.5 bg-neutral-300"
+          orientation="vertical"
+        />
+        <HeadingLevelButton />
+        <Separator
+          className="h-6 mx-1.5 bg-neutral-300"
+          orientation="vertical"
+        />
+        <FontSizeButton />
+        <Separator
+          className="h-6 mx-1.5 bg-neutral-300"
+          orientation="vertical"
+        />
+      </div>
 
-      <HeadingLevelButton />
+      <div className="flex items-center gap-x-1">
+        {sections[1].map((item) => (
+          <ToolbarButton key={item.label} {...item} />
+        ))}
+        <TextColorButton />
+        <HighlightColorButton />
+      </div>
 
-      <Separator className="h-6 bg-neutral-300" orientation="vertical" />
+      <Separator className="h-6 mx-1.5 bg-neutral-300" orientation="vertical" />
 
-      <FontSizeButton />
-      <Separator className="h-6 bg-neutral-300" orientation="vertical" />
+      <div className="flex items-center gap-x-1">
+        <LinkButton />
+        <ImageButton />
+        <AlignButton />
+        <LineHeightButton />
+        <ListButton />
+      </div>
 
-      {sections[1].map((item) => (
-        <ToolbarButton key={item.label} {...item} />
-      ))}
+      <Separator className="h-6 mx-1.5 bg-neutral-300" orientation="vertical" />
 
-      <TextColorButton />
-
-      <HighlightColorButton />
-
-      <Separator className="h-6 bg-neutral-300" orientation="vertical" />
-
-      <LinkButton />
-      <ImageButton />
-      <AlignButton />
-
-      <ListButton />
-
-      {sections[2].map((item) => (
-        <ToolbarButton key={item.label} {...item} />
-      ))}
+      <div className="flex items-center gap-x-1">
+        {sections[2].map((item) => (
+          <ToolbarButton key={item.label} {...item} />
+        ))}
+      </div>
     </div>
   );
 };

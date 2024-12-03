@@ -8,6 +8,7 @@ import { useEditorStore } from "@/store/use-editor-store";
 import { PenLineIcon } from "lucide-react";
 import React from "react";
 import { CirclePicker, type ColorResult } from "react-color";
+import { FaHighlighter } from "react-icons/fa6";
 
 export const HighlightColorButton = () => {
   const COLOR_PALETTE = [
@@ -78,7 +79,7 @@ export const HighlightColorButton = () => {
               transition-all duration-200
             "
           >
-            <PenLineIcon className="size-4" />
+            <FaHighlighter className="size-4" />
           </button>
         </LabelTooltip>
       </DropdownMenuTrigger>

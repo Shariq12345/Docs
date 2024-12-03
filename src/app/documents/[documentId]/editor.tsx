@@ -20,6 +20,13 @@ import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
 import TextAlign from "@tiptap/extension-text-align";
 import { FontSizeExtension } from "@/extensions/font-size";
+import { LineHeightExtension } from "@/extensions/line-height";
+import Superscript from "@tiptap/extension-superscript";
+import Subscript from "@tiptap/extension-subscript";
+import Code from "@tiptap/extension-code";
+import Placeholder from "@tiptap/extension-placeholder";
+import CharacterCount from "@tiptap/extension-character-count";
+import { Ruler } from "./components/ruler";
 
 export const Editor = () => {
   const { setEditor } = useEditorStore();
@@ -33,10 +40,22 @@ export const Editor = () => {
     },
     extensions: [
       StarterKit,
+      Code,
+      Placeholder.configure({
+        placeholder: "Start typing...",
+      }),
+      CharacterCount.configure({
+        textCounter: (text) => [...new Intl.Segmenter().segment(text)].length,
+        wordCounter: (text) =>
+          text.split(/\s+/).filter((word) => word !== "").length,
+      }),
       FontSizeExtension,
+      LineHeightExtension,
       Underline,
       FontFamily,
       TextStyle,
+      Superscript,
+      Subscript,
       Color,
       TextAlign.configure({
         types: ["heading", "paragraph"],
@@ -66,6 +85,7 @@ export const Editor = () => {
       TableHeader,
       TableCell,
     ],
+    immediatelyRender: false,
     onCreate({ editor }) {
       setEditor(editor);
     },
@@ -94,6 +114,7 @@ export const Editor = () => {
 
   return (
     <div className="size-full overflow-x-auto bg-[#F9FBFD] px-4 print:p-0 print:bg-white print:overflow-visible">
+      <Ruler />
       <div className="min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0">
         <EditorContent editor={editor} />
       </div>
