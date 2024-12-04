@@ -9,9 +9,26 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { templates } from "@/constants/templates";
+import { useRouter } from "next/navigation";
+import { useMutation } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
 
 export const TemplatesGallery = () => {
-  const isCreating = false;
+  const router = useRouter();
+  const create = useMutation(api.documents.createDocument);
+  const [isCreating, setIsCreating] = React.useState(false);
+
+  const onTemplateClick = (title: string, initialContent: string) => {
+    setIsCreating(true);
+    create({ title, initialContent })
+      .then((documentId) => {
+        router.push(`/documents/${documentId}`);
+      })
+      .finally(() => {
+        setIsCreating(false);
+      });
+  };
+
   return (
     <div className="bg-[#f1f3f4]">
       <div className="max-w-screen-xl mx-auto px-16 py-6 flex flex-col gap-y-4">
@@ -36,7 +53,8 @@ export const TemplatesGallery = () => {
                 >
                   <button
                     disabled={isCreating}
-                    onClick={() => {}}
+                    // TODO: Add content
+                    onClick={() => onTemplateClick(template.label, "")}
                     style={{
                       backgroundImage: `url(${template.imageUrl})`,
                       backgroundSize: "cover",
@@ -59,8 +77,6 @@ export const TemplatesGallery = () => {
     </div>
   );
 };
-
-
 
 // "use client";
 // import React from "react";
@@ -110,25 +126,25 @@ export const TemplatesGallery = () => {
 //                       backgroundRepeat: "no-repeat",
 //                     }}
 //                     className="
-//                       size-full 
-//                       rounded-xl 
-//                       border 
-//                       border-neutral-200 
-//                       transition-all 
-//                       duration-300 
-//                       hover:border-primary-500 
-//                       hover:shadow-lg 
+//                       size-full
+//                       rounded-xl
+//                       border
+//                       border-neutral-200
+//                       transition-all
+//                       duration-300
+//                       hover:border-primary-500
+//                       hover:shadow-lg
 //                       group-hover:scale-[1.03]
-//                       bg-white 
+//                       bg-white
 //                       overflow-hidden
 //                     "
 //                   />
 //                   <p
 //                     className="
-//                     text-sm 
-//                     font-medium 
-//                     text-neutral-700 
-//                     truncate 
+//                     text-sm
+//                     font-medium
+//                     text-neutral-700
+//                     truncate
 //                     group-hover:text-primary-600
 //                     transition-colors
 //                   "
@@ -141,30 +157,30 @@ export const TemplatesGallery = () => {
 //           </CarouselContent>
 //           <div
 //             className="
-//             absolute 
-//             top-1/2 
-//             -translate-y-1/2 
-//             w-full 
-//             flex 
-//             justify-between 
+//             absolute
+//             top-1/2
+//             -translate-y-1/2
+//             w-full
+//             flex
+//             justify-between
 //             pointer-events-none
 //           "
 //           >
 //             <CarouselPrevious
 //               className="
-//                 pointer-events-auto 
-//                 bg-white/80 
-//                 backdrop-blur-sm 
-//                 shadow-md 
+//                 pointer-events-auto
+//                 bg-white/80
+//                 backdrop-blur-sm
+//                 shadow-md
 //                 hover:bg-neutral-100
 //               "
 //             />
 //             <CarouselNext
 //               className="
-//                 pointer-events-auto 
-//                 bg-white/80 
-//                 backdrop-blur-sm 
-//                 shadow-md 
+//                 pointer-events-auto
+//                 bg-white/80
+//                 backdrop-blur-sm
+//                 shadow-md
 //                 hover:bg-neutral-100
 //               "
 //             />

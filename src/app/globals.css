@@ -338,3 +338,21 @@ code:hover {
   height: 0;
   pointer-events: none;
 }
+
+
+@media print {
+  /* Hide the title in the printed page header/footer */
+  @page {
+    size: auto;
+    margin: 0;
+  }
+  /* To remove title text from printed page */
+  title {
+    display: none;
+  }
+
+  /* Alternatively, you can hide the title element if it appears as part of the page content */
+  .page-title {
+    display: none;
+  }
+}
