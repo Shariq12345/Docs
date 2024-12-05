@@ -26,7 +26,7 @@ export function ConvexClientProvider({ children }: { children: ReactNode }) {
           </div>
         </Unauthenticated>
         <AuthLoading>
-          <ScreenLoader label="Please wait while we check your authentication status..." />
+          <ScreenLoader label="Please wait a moment" />
         </AuthLoading>
       </ConvexProviderWithClerk>
     </ClerkProvider>

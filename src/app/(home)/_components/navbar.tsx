@@ -11,7 +11,7 @@ export const Navbar = () => {
         <Link href="/">
           <Image src="/logo.svg" alt="Logo" width={35} height={35} />
         </Link>
-        <h3 className="text-xl">DocuMate</h3>
+        <h3 className="text-xl font-semibold hidden sm:block">DocuMate</h3>
       </div>
       <SearchInput />
       <UserButton />

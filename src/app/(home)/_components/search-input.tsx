@@ -37,13 +37,12 @@ export const SearchInput = () => {
             placeholder="Search documents, files, and more..."
             className="
               pl-14 pr-14 
-              h-[52px] 
-              text-base 
+              h-[44px] text-sm 
               border-2 
               border-neutral-200 
               bg-white 
               shadow-sm 
-              rounded-xl 
+              rounded-lg 
               focus-visible:border-primary-500 
               focus-visible:ring-2 
               focus-visible:ring-primary-200 
@@ -51,8 +50,11 @@ export const SearchInput = () => {
               duration-300 
               ease-in-out
               placeholder:text-neutral-500
+
+              sm:h-[52px] sm:text-base sm:rounded-xl sm:pl-14 sm:pr-14 mr
             "
           />
+
           <Button
             type="submit"
             variant="ghost"
