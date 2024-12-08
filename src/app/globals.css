@@ -315,7 +315,8 @@ code {
   border-radius: 0.5rem;
   border: 1px solid var(--code-border, #e0e0e0);
   color: var(--code-text, #333);
-  font-family: 'Cascadia Code', 'Fira Code', 'Source Code Pro', Consolas, monospace;
+  font-family: "Cascadia Code", "Fira Code", "Source Code Pro", Consolas,
+    monospace;
   font-size: 0.85rem;
   line-height: 1.6;
   padding: 0.4rem 0.6rem;
@@ -330,7 +331,6 @@ code:hover {
   background-color: var(--code-background-hover, #f0f0f0);
 }
 
-
 .tiptap p.is-editor-empty:first-child::before {
   color: #adb5bd;
   content: attr(data-placeholder);
@@ -338,7 +338,6 @@ code:hover {
   height: 0;
   pointer-events: none;
 }
-
 
 @media print {
   /* Hide the title in the printed page header/footer */
@@ -355,4 +354,32 @@ code:hover {
   .page-title {
     display: none;
   }
+}
+
+/* For mobile */
+.floating-threads {
+  display: none;
+}
+
+/* For desktop */
+.anchored-threads {
+  display: block;
+  max-width: 300px;
+  width: 100%;
+  position: absolute;
+  right: 12px;
+}
+
+@media (max-width: 640px) {
+  .floating-threads {
+    display: block;
+  }
+
+  .anchored-threads {
+    display: none;
+  }
+}
+
+div[data-radix-popper-content-wrapper] {
+  z-index: 50 !important;
 }

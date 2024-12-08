@@ -110,18 +110,21 @@ export const Toolbar = () => {
     [
       {
         label: "Bold",
+        // @ts-ignore
         icon: MdFormatBold,
         onClick: () => editor?.chain().focus().toggleBold().run(),
         isActive: editor?.isActive("bold"),
       },
       {
         label: "Italic",
+        // @ts-ignore
         icon: MdFormatItalic,
         onClick: () => editor?.chain().focus().toggleItalic().run(),
         isActive: editor?.isActive("italic"),
       },
       {
         label: "Underline",
+        // @ts-ignore
         icon: MdFormatUnderlined,
         onClick: () => editor?.chain().focus().toggleUnderline().run(),
         isActive: editor?.isActive("underline"),
@@ -132,8 +135,9 @@ export const Toolbar = () => {
         label: "Comment",
         icon: MessageSquarePlusIcon,
         onClick: () => {
-          console.log("Comment");
+          editor?.chain().focus().addPendingComment().run();
         },
+        isActive: editor?.isActive("liveblocksCommentMark"),
       },
       {
         label: "List todo",

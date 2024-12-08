@@ -75,7 +75,7 @@ export const DocumentsTable = ({
       ${
         status === "CanLoadMore"
           ? "bg-primary-500 text-neutral-500 hover:bg-primary-600 focus:ring-2 focus:ring-primary-300"
-          : "bg-gray-200 text-gray-500 cursor-not-allowed"
+          : "text-gray-500 cursor-not-allowed"
       }
     `}
         >

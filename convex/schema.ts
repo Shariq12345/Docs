@@ -10,7 +10,7 @@ export default defineSchema({
     organisationId: v.optional(v.string()),
   })
     .index("by_owner_id", ["ownerId"])
-    .index("bg_organisation_id", ["organisationId"])
+    .index("by_organisation_id", ["organisationId"])
     .searchIndex("search_title", {
       searchField: "title",
       filterFields: ["ownerId", "organisationId"],

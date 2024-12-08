@@ -257,34 +257,33 @@ export const MenuBar = () => {
           <MenubarContent>
             <MenubarItem onClick={() => editor?.chain().focus().undo().run()}>
               <Undo2Icon className="size-4 mr-2" />
-              Undo <KeyboardShortcut>Ctrl + Z</KeyboardShortcut>
+              Undo <KeyboardShortcut>⌘ Z</KeyboardShortcut>
             </MenubarItem>
             <MenubarItem onClick={() => editor?.chain().focus().redo().run()}>
               <Redo2Icon className="size-4 mr-2" />
-              Redo <KeyboardShortcut>Ctrl + Y</KeyboardShortcut>
+              Redo <KeyboardShortcut>⌘ Y</KeyboardShortcut>
             </MenubarItem>
 
             <MenubarSeparator />
 
             <MenubarItem>
               <ScissorsIcon className="size-4 mr-2" />
-              Cut <KeyboardShortcut>Ctrl + K</KeyboardShortcut>
+              Cut <KeyboardShortcut>⌘ K</KeyboardShortcut>
             </MenubarItem>
 
             <MenubarItem>
               <CopyIcon className="size-4 mr-2" />
-              Copy <KeyboardShortcut>Ctrl + C</KeyboardShortcut>
+              Copy <KeyboardShortcut>⌘ C</KeyboardShortcut>
             </MenubarItem>
 
             <MenubarItem>
               <ClipboardIcon className="size-4 mr-2" />
-              Paste <KeyboardShortcut>Ctrl + V</KeyboardShortcut>
+              Paste <KeyboardShortcut>⌘ V</KeyboardShortcut>
             </MenubarItem>
 
             <MenubarItem>
               <ClipboardTypeIcon className="size-4 mr-2" />
               Paste without formatting
-              <KeyboardShortcut>Ctrl + Shift + V</KeyboardShortcut>
             </MenubarItem>
           </MenubarContent>
         </MenubarMenu>
@@ -315,7 +314,7 @@ export const MenuBar = () => {
                 </MenubarItem>
               </MenubarSubContent>
             </MenubarSub>
-    
+
             <MenubarItem
               onClick={() => editor?.chain().focus().toggleCode().run()}
             >
