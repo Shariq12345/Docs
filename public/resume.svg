@@ -4,7 +4,7 @@
   
   <!-- Header Section -->
   <text x="40" y="40" font-family="Arial, sans-serif" font-size="14" fill="#FF0000" font-weight="bold">Hello,</text>
-  <text x="40" y="70" font-family="Arial, sans-serif" font-size="18" font-weight="bold">I'm Your Name</text>
+  <text x="40" y="70" font-family="Arial, sans-serif" font-size="18" font-weight="bold">I&apos;m Your Name</text>
   
   <!-- Contact Info -->
   <text x="40" y="100" font-family="Arial, sans-serif" font-size="11">123 YOUR STREET</text>

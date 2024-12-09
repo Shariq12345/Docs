@@ -4,8 +4,8 @@ import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { useEditorStore } from "@/store/use-editor-store";
 import {
-  BoldIcon,
-  ItalicIcon,
+  // BoldIcon,
+  // ItalicIcon,
   ListTodoIcon,
   LucideIcon,
   MessageSquarePlusIcon,
@@ -13,7 +13,7 @@ import {
   Redo2Icon,
   RemoveFormattingIcon,
   SpellCheckIcon,
-  UnderlineIcon,
+  // UnderlineIcon,
   Undo2Icon,
 } from "lucide-react";
 import { FontFamilyButton } from "./buttons/font-family-button";

@@ -5,7 +5,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useEditorStore } from "@/store/use-editor-store";
-import { ListCollapseIcon } from "lucide-react";
+// import { ListCollapseIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LabelTooltip } from "@/components/label-tooltip";
 import { CgFormatLineHeight } from "react-icons/cg";
@@ -37,10 +37,10 @@ export const LineHeightButton = () => {
   ];
 
   // Determine the active line height
-  const activeLineHeight =
-    lineHeights.find(
-      ({ value }) => editor?.getAttributes("paragraph").lineHeight === value
-    ) || lineHeights[0];
+  // const activeLineHeight =
+  //   lineHeights.find(
+  //     ({ value }) => editor?.getAttributes("paragraph").lineHeight === value
+  //   ) || lineHeights[0];
 
   return (
     <DropdownMenu>

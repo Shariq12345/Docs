@@ -44,7 +44,7 @@ export const RenameDialog = ({
         setOpen(false);
         toast.success("Document renamed!.");
       })
-      .catch((error) => {
+      .catch(() => {
         toast.error("Failed to rename document.");
       })
       .finally(() => {

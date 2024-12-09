@@ -16,6 +16,7 @@ const ErrorPage = ({
 }) => {
   const [isErrorDetailsVisible, setIsErrorDetailsVisible] = useState(false);
 
+  // @typescript-eslint/no-explicit-any
   const particlesInit = async (main: any) => {
     await loadSlim(main);
   };
@@ -97,7 +98,7 @@ const ErrorPage = ({
               Oops! Something went wrong
             </h2>
             <p className="text-gray-600">
-              Don't worry, technical hiccups happen. We're here to help you get
+              Don&apos;t worry, technical hiccups happen. We&apos;re here to help you get
               back on track.
             </p>
 

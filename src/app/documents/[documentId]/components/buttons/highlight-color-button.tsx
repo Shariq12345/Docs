@@ -5,7 +5,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useEditorStore } from "@/store/use-editor-store";
-import { PenLineIcon } from "lucide-react";
 import React from "react";
 import { CirclePicker, type ColorResult } from "react-color";
 import { FaHighlighter } from "react-icons/fa6";

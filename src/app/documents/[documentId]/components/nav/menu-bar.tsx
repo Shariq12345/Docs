@@ -1,12 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import {
   Menubar,
   MenubarContent,
   MenubarItem,
   MenubarMenu,
   MenubarSeparator,
-  MenubarShortcut,
   MenubarSub,
   MenubarSubContent,
   MenubarSubTrigger,
@@ -22,7 +21,6 @@ import {
   FileIcon,
   FileJsonIcon,
   FilePenIcon,
-  FilePlusIcon,
   FolderDownIcon,
   GlobeIcon,
   LayoutPanelTopIcon,
@@ -48,6 +46,13 @@ import {
 import { TbBrandGoogleDrive, TbSubscript, TbSuperscript } from "react-icons/tb";
 import { TiDocumentText } from "react-icons/ti";
 import { useEditorStore } from "@/store/use-editor-store";
+import { Doc } from "../../../../../../convex/_generated/dataModel";
+import { useMutation } from "convex/react";
+import { api } from "../../../../../../convex/_generated/api";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { RenameDialog } from "@/components/rename-dialog";
+import { RemoveDialog } from "@/components/remove-dialog";
 
 const KeyboardShortcut = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -65,8 +70,15 @@ const KeyboardShortcut = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const MenuBar = () => {
+interface MenuBarProps {
+  data: Doc<"documents">;
+}
+
+export const MenuBar = ({ data }: MenuBarProps) => {
+  const router = useRouter();
   const { editor } = useEditorStore();
+
+  const mutation = useMutation(api.documents.createDocument);
 
   const onDownload = (blob: Blob, filename: string) => {
     const url = URL.createObjectURL(blob);
@@ -83,7 +95,7 @@ export const MenuBar = () => {
     const blob = new Blob([JSON.stringify(content)], {
       type: "application/json",
     });
-    onDownload(blob, `document.json`); //TODO: Add documet name
+    onDownload(blob, `${data.title}.json`);
   };
 
   const onSaveHTML = () => {
@@ -91,7 +103,7 @@ export const MenuBar = () => {
 
     const content = editor.getHTML();
     const blob = new Blob([content], { type: "text/html" });
-    onDownload(blob, `document.html`); //TODO: Add documet name
+    onDownload(blob, `${data.title}.html`);
   };
 
   const onSaveText = () => {
@@ -112,6 +124,20 @@ export const MenuBar = () => {
       .run();
   };
 
+  const onNewDocument = () => {
+    mutation({
+      title: "New Document",
+      initialContent: "",
+    })
+      .then((id) => {
+        toast.success("New document created");
+        router.push(`/documents/${id}`);
+      })
+      .catch(() => {
+        toast.error("Failed to create new document");
+      });
+  };
+
   return (
     <div className="flex">
       <Menubar className="border-none bg-transparent shadow-none h-auto p-0">
@@ -127,15 +153,10 @@ export const MenuBar = () => {
                 New
               </MenubarSubTrigger>
               <MenubarSubContent>
-                <MenubarItem>Document</MenubarItem>
+                <MenubarItem onClick={onNewDocument}>Document</MenubarItem>
                 <MenubarItem>From template gallery</MenubarItem>
               </MenubarSubContent>
             </MenubarSub>
-
-            <MenubarItem>
-              <FilePlusIcon className="size-4 mr-2" />
-              New Document
-            </MenubarItem>
 
             <MenubarSeparator />
 
@@ -189,10 +210,12 @@ export const MenuBar = () => {
 
             <MenubarSeparator />
 
-            <MenubarItem>
-              <FilePenIcon className="size-4 mr-2" />
-              Rename
-            </MenubarItem>
+            <RenameDialog documentId={data._id} initialTitle={data.title}>
+              <MenubarItem>
+                <FilePenIcon className="size-4 mr-2" />
+                Rename
+              </MenubarItem>
+            </RenameDialog>
 
             <MenubarItem>
               <FolderDownIcon className="size-4 mr-2" />
@@ -204,10 +227,15 @@ export const MenuBar = () => {
               Add a shortcut to Drive
             </MenubarItem>
 
-            <MenubarItem>
-              <Trash2Icon className="size-4 mr-2" />
-              Move to bin
-            </MenubarItem>
+            <RemoveDialog documentId={data._id}>
+              <MenubarItem
+                onClick={(e) => e.stopPropagation()}
+                onSelect={(e) => e.preventDefault()}
+              >
+                <Trash2Icon className="size-4 mr-2" />
+                Move to bin
+              </MenubarItem>
+            </RemoveDialog>
 
             <MenubarSeparator />
 
